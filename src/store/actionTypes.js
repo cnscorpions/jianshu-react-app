@@ -1,0 +1,3 @@
+export const FOCUS_SEARCH_INPUT = "FOCUS_SEARCH_INPUT";
+export const BLUR_SEARCH_INPUT = "BLUR_SEARCH_INPUT";
+export const INIT_LIST = "INIT_LIST";
