@@ -24,9 +24,9 @@ class Header extends Component {
   getSearchItems = props => {
     const { isFocus, list } = props;
     return (
-      <SearchInfo className={ isFocus ? "focused" : null}>
+      <SearchInfo className={isFocus ? "focused" : null}>
         <ul>
-          { list.map((item, index) => (
+          {list.map((item, index) => (
             <li key={index}>
               <a href="/">{item}</a>
             </li>
@@ -57,7 +57,7 @@ class Header extends Component {
             <SearchWrapper>
               <NavSearch
                 className={this.props.isFocus ? "focused" : null}
-                onFocus={this.props.handleFocus}
+                onFocus={() => this.props.handleFocus(this.props.list)}
                 onBlur={this.props.handleBlur}
               ></NavSearch>
               <i className={this.props.isFocus ? "focused iconfont" : "iconfont"}>&#xe62b;</i>
@@ -82,10 +82,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleFocus() {
+    handleFocus(list) {
+      // 要注意list
+      if (list.size === 0) {
+        dispatch(getItemList());
+      }
       const action = focusSearchInputAction();
       dispatch(action);
-      dispatch(getItemList());
     },
     handleBlur() {
       const action = blurSearchInputAction();
