@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { login } from "../../store/actionCreators/actionCreators";
 import {
   LoginWrapper,
   LoginMain,
@@ -6,8 +8,6 @@ import {
   LoginContainer,
   LoginForm,
   MoreLogin,
-  NameInput,
-  PasswordInput,
   RememberBtn,
   ForgetPassword,
   RememberBtnInput,
@@ -15,6 +15,33 @@ import {
 } from "./loginStyle";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.accountInput = React.createRef();
+    this.passwordInput = React.createRef();
+
+    this.handleAccountInput = this.handleAccountInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+
+    this.state = {
+      account: "",
+      password: ""
+    };
+  }
+
+  handleAccountInput(input) {
+    this.setState(state => ({
+      account: input.value
+    }));
+  }
+
+  handlePasswordInput(input) {
+    this.setState(state => ({
+      password: input.value
+    }));
+  }
+
   render() {
     return (
       <LoginWrapper>
@@ -26,8 +53,18 @@ class Login extends Component {
           </LoginTitle>
           <LoginContainer>
             <LoginForm>
-              <NameInput />
-              <PasswordInput />
+              <input
+                placeholder="手机号或邮箱"
+                value={this.state.account}
+                onChange={() => this.handleAccountInput(this.accountInput.current)}
+                ref={this.accountInput}
+              />
+              <input
+                placeholder="密码"
+                value={this.state.password}
+                onChange={() => this.handlePasswordInput(this.passwordInput.current)}
+                ref={this.passwordInput}
+              />
               <div>
                 <RememberBtn>
                   <RememberBtnInput />
@@ -39,7 +76,7 @@ class Login extends Component {
                   </a>
                 </ForgetPassword>
               </div>
-              <SubmitBtn>
+              <SubmitBtn onClick={this.props.login.bind(this)}>
                 <span id="sign-in-loading">登录</span>
               </SubmitBtn>
             </LoginForm>
@@ -51,4 +88,21 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  isLoggedIn: state.login.get("isLoggedIn")
+});
+
+const mapDispatchToProps = dispatch => ({
+  login(event) {
+    event.preventDefault();
+    const [account, password] = [this.accountInput.current.value, this.passwordInput.current.value];
+    const obj = {
+      account: account,
+      password: password
+    };
+    console.log(account, password);
+    dispatch(login(obj));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Login);

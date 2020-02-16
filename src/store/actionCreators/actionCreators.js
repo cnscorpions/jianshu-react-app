@@ -34,3 +34,16 @@ export const logInAction = isLoggedIn => ({
 export const logOutAction = isLoggedIn => ({
   type: LOGOUT
 });
+
+export const login = obj => {
+  return dispatch => {
+    axios
+      .post("http://localhost:38080/app/mock/16/login.json", obj)
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(logInAction());
+        }
+      })
+      .catch(error => console.log(error));
+  };
+};

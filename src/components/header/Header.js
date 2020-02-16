@@ -49,8 +49,8 @@ class Header extends Component {
             </i>
             写文章
           </WriteBtn>
-          <SignupBtn>注册</SignupBtn>
-          <SignIn>{this.props.isLoggedIn ? "退出" : "登录"}</SignIn>
+          {this.props.isLoggedIn ? null : <SignupBtn>注册</SignupBtn>}
+          <SignupBtn>{this.props.isLoggedIn ? "退出" : "登录"}</SignupBtn>
           <NavContainer>
             <NavItem className="left active">首页</NavItem>
             <NavItem className="left">下载App</NavItem>

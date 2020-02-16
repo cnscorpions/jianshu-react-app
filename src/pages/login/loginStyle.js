@@ -50,14 +50,6 @@ export const LoginForm = styled.form`
   }
 `;
 
-export const NameInput = styled.input.attrs({
-  placeholder: "手机号或邮箱"
-})``;
-
-export const PasswordInput = styled.input.attrs({
-  placeholder: "密码"
-})``;
-
 export const RememberBtn = styled.div`
   float: left;
   margin: 15px 0;
