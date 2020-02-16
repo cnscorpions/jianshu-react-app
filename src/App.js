@@ -11,6 +11,7 @@ import { IconFont } from "./assets/iconfont/iconfont";
 import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import Detail from "./pages/detail/Detail";
+import Login from "./pages/login/Login";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Router>
           <Route path="/" exact component={Home}></Route>
           <Route path="/detail" exact component={Detail}></Route>
+          <Route path="/login" exact component={Login}></Route>
         </Router>
       </div>
     </Provider>

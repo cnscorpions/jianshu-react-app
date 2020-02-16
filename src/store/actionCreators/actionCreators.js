@@ -1,4 +1,4 @@
-import { FOCUS_SEARCH_INPUT, BLUR_SEARCH_INPUT, INIT_LIST } from "../actionTypes";
+import { FOCUS_SEARCH_INPUT, BLUR_SEARCH_INPUT, INIT_LIST, LOGIN, LOGOUT } from "../actionTypes";
 import axios from "axios";
 import { fromJS } from "immutable";
 
@@ -26,3 +26,11 @@ export const getItemList = () => {
       .catch(() => console.log("error"));
   };
 };
+
+export const logInAction = isLoggedIn => ({
+  type: LOGIN
+});
+
+export const logOutAction = isLoggedIn => ({
+  type: LOGOUT
+});

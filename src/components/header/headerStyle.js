@@ -25,7 +25,7 @@ export const WriteBtn = styled.a`
   text-align: center;
 `;
 
-export const SignupBtn = styled.a`
+export const SignupBtn = styled.div`
   float: right;
   width: 80px;
   height: 38px;
@@ -39,7 +39,7 @@ export const SignupBtn = styled.a`
   text-align: center;
 `;
 
-export const SignIn = styled.a`
+export const SignIn = styled.div`
   float: right;
   margin: 22px 6px 0 10px;
   font-size: 15px;

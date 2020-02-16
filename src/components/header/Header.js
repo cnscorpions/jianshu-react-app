@@ -50,7 +50,7 @@ class Header extends Component {
             写文章
           </WriteBtn>
           <SignupBtn>注册</SignupBtn>
-          <SignIn>登录</SignIn>
+          <SignIn>{this.props.isLoggedIn ? "退出" : "登录"}</SignIn>
           <NavContainer>
             <NavItem className="left active">首页</NavItem>
             <NavItem className="left">下载App</NavItem>
@@ -76,7 +76,8 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     isFocus: state.header.get("isFocus"),
-    list: state.header.get("list")
+    list: state.header.get("list"),
+    isLoggedIn: state.login.get("isLoggedIn")
   };
 };
 
